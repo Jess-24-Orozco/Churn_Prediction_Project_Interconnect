@@ -1,15 +1,36 @@
-# Churn_Prediction_Project_Interconnect
-Proyecto de Machine Learning orientado a predecir la cancelación de clientes (churn) en la empresa de telecomunicaciones Interconnect. A partir de datos personales, contratos y servicios utilizados, el modelo permite identificar clientes en riesgo y apoyar al equipo de marketing en la creación de estrategias de retención efectivas.
+# Predicción de Cancelación de Clientes (Churn) - Interconnect
+## 1. Descripción del problema (Churn)
+El objetivo de este proyecto es construir un modelo de Machine Learning que permita a la operadora de telecomunicaciones Interconnect pronosticar su tasa de cancelación de clientes. La detección temprana de usuarios que planean abandonar el servicio permitirá al equipo de marketing actuar proactivamente ofreciendo códigos promocionales y planes especiales para mejorar la retención.
 
-# Fase 1 — Plan de trabajo
-## 1. Objetivo del proyecto:
-Implementar un modelo predictivo para anticipar la cancelación de clientes en Interconnect y aplicar estrategias de retención mediante promociones y planes especiales.
+## 2. Datos
+- Se utilizó un conjunto de datos integrado a partir de cuatro fuentes principales mediante el identificador customerID:
+- Datos Contractuales (contract.csv): Información sobre el tipo de contrato (mensual, anual, etc.), métodos de pago y cargos.
+- Datos Personales (personal.csv): Género, si el cliente es adulto mayor y si tiene dependientes o pareja.
+- Servicios de Internet (internet.csv): Tipo de conexión (DSL o Fibra Óptica) y servicios adicionales como seguridad y backup.
+- Servicios de Telefonía (phone.csv): Si el cliente tiene líneas múltiples.
 
-## 2. Hipótesis:
-Hipótesis 1: Los clientes con contratos de corto plazo (pago mensual) tienen una mayor probabilidad de cancelar su servicio que los clientes con contratos de 1 o 2 años.
+El dataset final consistió en 7,043 registros y 20 columnas. Durante el análisis exploratorio (EDA), se identificaron y manejaron valores nulos en servicios no contratados y se corrigieron errores en la columna TotalCharges.
 
-Hipótesis 2: Los clientes que solo utilizan el servicio de teléfono fijo tienen una mayor tasa de cancelación que aquellos que usan servicios de internet o combinan varios servicios.
+## 3. Modelos 
+En el desarrollo del proyecto se probaron distintas alternativas de modelado para clasificación binaria, incluyendo:
+- Modelos Lineales: Regresión Logística.
+- Modelos de Ensamble: Random Forest Classifier.
+- Potenciación de Gradiente (Boosting): Gradient Boosting Classifier y XGBClassifier.
 
-Hipótesis 3: Los clientes que no utilizan servicios adicionales como seguridad en línea, soporte técnico o almacenamiento en la nube tienen mayor riesgo de cancelar su servicio.
+Se implementaron técnicas de preprocesamiento como OneHotEncoder para variables categóricas, StandardScaler para variables numéricas, y manejo de desequilibrio de clases mediante compute_sample_weight.
 
+## 4. Métricas principales
+La evaluación de los modelos se centró en métricas robustas para problemas de clasificación, tales como:
+- ROC-AUC: Métrica principal para medir la capacidad de discriminación del modelo entre clientes que cancelan y los que no.
+- F1-Score: Para balancear la precisión y el recobro (recall).
+- Matriz de Confusión: Para visualizar el desempeño detallado de las predicciones.
+
+## 5. Conclusión
+En base al análisis realizado en el documento, se concluye que:
+Se logró integrar y limpiar con éxito la información de diversas fuentes, generando variables clave como tenure (antigüedad) y el objetivo churn.
+El manejo de valores nulos y la ingeniería de características fueron fundamentales para fortalecer el modelado.
+
+La comparación de modelos permitió seleccionar la mejor alternativa justificada por las necesidades del negocio de Interconnect, demostrando capacidad para identificar patrones de comportamiento que preceden a la cancelación del servicio.
+
+Nota: Asegúrate de completar los valores exactos de las métricas (como el valor final de ROC-AUC) que obtuviste en las últimas celdas de tu notebook antes de publicar el README.
 
